@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../WebstormProjects/TWProiect/.idea/TWProiect.iml" filepath="$PROJECT_DIR$/../WebstormProjects/TWProiect/.idea/TWProiect.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../WebstormProjects/TWlab2/.idea/TWlab2.iml" filepath="$PROJECT_DIR$/../WebstormProjects/TWlab2/.idea/TWlab2.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Web_Development_Project.iml" filepath="$PROJECT_DIR$/.idea/Web_Development_Project.iml" />
     </modules>
   </component>
