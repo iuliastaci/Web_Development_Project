@@ -9,7 +9,12 @@ body{
                         "z-calendar z-top_produse"
                         "z-anunturi z-lista_utilizatori"
                         "z-date_utilizatori z-date_site";
+    gap: 15px 7.5px;
 }
 html{
     font-size: 15px;
+}
+
+.container-iframe{
+    display: none;
 }

@@ -10,12 +10,11 @@ body{
 nav{
     --text-meniu: var(--culoare-text-buton);
     background-color: transparent;
-    /*width: 100%;*/
-    width: calc(100vw - 18px);
+    width: 100%;
     height: var(--inaltime-meniu);
     position: sticky;
     top: 0;
-    margin-left: calc(-1*var(--spatiere-pagina));
+    z-index: 1;
 }
 
 ul.meniu, ul.meniu ul{
@@ -31,6 +30,7 @@ ul.meniu{
 }
 
 ul.meniu li{
+    position: relative;
     width: var(--latime-buton);
     height: var(--inaltime-meniu);
     overflow: hidden;
@@ -43,7 +43,7 @@ ul.meniu li{
 
 ul.meniu li:hover{
     overflow: visible;
-    background-color: antiquewhite; /*de setat cu variabila*/
+    background-color: antiquewhite;
 }
 
 ul.meniu ul{
@@ -56,6 +56,9 @@ ul.meniu ul{
 ul.meniu li:hover ul{
     opacity: 1;
     transform: scale(1,1);
+    transform-origin: center;
+    position: absolute;
+    z-index: 1;
 }
 ul.meniu li div, ul.meniu li a{
     display: block;
@@ -77,3 +80,19 @@ ul.meniu>li{
 #acasa-mediu{
     display:none;
 }
+
+ul.meniu>li:before{
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: var(--inaltime-meniu);
+    width: var(--latime-buton);
+    height: 4px;
+    background: linear-gradient(to right, var(--culoare-meniu), white);
+    transition: all 0.5s ease-in;
+    opacity: 0;
+}
+ ul.meniu>li:hover::before{
+     opacity: 1;
+     bottom: 0;
+ }

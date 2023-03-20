@@ -20,6 +20,10 @@ ul.meniu{
     display: none;
 }
 
+ul.meniu li:hover ul{
+    width: var(--latime-buton);
+}
+
 #ch-menu:checked+ul.meniu{
     display: block;
     animation-name: animatie_meniu;
@@ -27,19 +31,18 @@ ul.meniu{
     animation-timing-function: linear;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
-    transform-origin: center top;
 }
 
 @keyframes animatie_meniu {
-    0% {
-        opacity: 0;
-        transform: scale(0.5,0);
+    from{
+        clip-path: circle(0% at left top);
     }
-    50% {
-        transform: scale(0.5,1);
-    }
-    100%{
-        opacity: 1;
-        transform: scale(1,1);
+    to{
+        clip-path: circle(150% at left top);
     }
 }
+
+ul.meniu>li:before{
+    display: none;
+}
+

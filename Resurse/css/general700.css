@@ -7,10 +7,15 @@ body{
 }
 #grid-pagina{
     display: block;
+    gap: 10px 5px;
 }
 #grid-pagina > *{
     margin-bottom: 15px;
 }
 html{
     font-size: 12px;
+}
+
+.container-iframe{
+    display: none;
 }

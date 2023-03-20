@@ -1,0 +1,97 @@
+#hamburger, #ch-menu {
+  display: none;
+}
+
+body {
+  --inaltime-meniu: 30px;
+  --latime-buton: 200px;
+}
+
+nav {
+  --text-meniu: var(--culoare-text-buton);
+  background-color: transparent;
+  width: 100%;
+  height: var(--inaltime-meniu);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+ul.meniu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+ul.meniu > li {
+  background-color: var(--culoare-highlight);
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: var(--latime-buton);
+}
+ul.meniu > li:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: var(--inaltime-meniu);
+  width: var(--latime-buton);
+  height: 4px;
+  background: linear-gradient(to right, var(--culoare-meniu), white);
+  transition: all 0.5s ease-in;
+  opacity: 0;
+}
+ul.meniu li {
+  position: relative;
+  width: var(--latime-buton);
+  height: var(--inaltime-meniu);
+  overflow: hidden;
+  text-align: center;
+  border: 1px solid var(--culoare-border);
+  background-color: var(--culoare-highlight);
+  transition: background-color 0.8s linear;
+  box-sizing: border-box;
+}
+ul.meniu li:hover {
+  overflow: visible;
+  background-color: antiquewhite;
+}
+ul.meniu ul {
+  opacity: 0;
+  transition: all 0.8s linear;
+  transform: scale(0, 0);
+  transform-origin: center top;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+ul.meniu > li:hover::before {
+  opacity: 1;
+  bottom: 0;
+}
+
+#acasa-mediu {
+  display: none;
+}
+
+ul.meniu li div, ul.meniu li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--culoare-text-buton);
+  text-decoration: none;
+  font-weight: bold;
+  line-height: var(--inaltime-meniu);
+}
+
+ul.meniu li:hover ul {
+  opacity: 1;
+  transform: scale(1, 1);
+  transform-origin: center;
+  position: absolute;
+  z-index: 1;
+}
+
+/*# sourceMappingURL=nav.css.map */
