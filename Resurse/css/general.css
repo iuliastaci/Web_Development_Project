@@ -144,6 +144,16 @@ iframe{
     background-color: var(--culoare-highlight);
 }
 
+video{
+    width: 100%;
+}
+
+video::cue{
+    background-color: transparent;
+    color: white;
+    text-shadow: 2px 4px 4px  black;
+}
+
 table{
     width: 100%;
     border-collapse: collapse;
@@ -209,4 +219,32 @@ caption{
 
 .watermark{
     display: none;
+}
+
+main a{
+    background-position: center;
+    background-size: 0;
+    background-repeat: no-repeat;
+}
+
+main a.link:hover{
+    background-size: 100%;
+    color: black;
+    background-image: radial-gradient(var(--culoare-header) 40%, transparent 80%, transparent 100%);
+    transition: all 1s linear;
+}
+
+main a.link:active{
+    border: 1px solid black;
+    transition: all 0.5s linear;
+}
+
+main a.link[href^="http"]::before{
+    content: "⮳";
+    font-size: 1.5rem;
+}
+
+a.link[href^="http"]:hover::before{
+    color: black;
+    transition: color 0.35s linear;
 }
