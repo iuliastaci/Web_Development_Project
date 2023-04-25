@@ -1,0 +1,25 @@
+@use "../../node_modules/bootstrap/scss/bootstrap.scss" with
+(
+  $primary: #B1E0B6,
+  $secondary: #F7CDB7,
+  $border-radius: 10px,
+  $font-family-base: 'Open sans',
+   $display-font-sizes: (1: 2rem,
+        2: 1.75rem
+   ),
+  $grid-breakpoints: (xs: 0,
+        sm: 500px,
+        md: 700px,
+        lg: 1000px,
+        xl: 1200px,
+        xxl: 1400px,
+    ),
+  $container-max-widths: (sm: 470px,
+        md: 660px,
+        lg: 940px,
+        xl: 1140px,
+        xxl: 1320px,
+    )
+);
+
+//trebuie modificate grid-breakpoint si container-max-widths (dimensiunile de grid)

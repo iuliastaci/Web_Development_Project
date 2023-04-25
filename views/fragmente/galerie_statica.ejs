@@ -1,0 +1,16 @@
+<div id="grid-galerie">
+    <% for (let imag of locals.imagini) { %>
+       <!--  const currentHour = new Date().getHours();
+         if (imag.timp === currentHour) { -->
+
+
+        <figure>
+            <picture>
+                <source srcset="<%- imag.fisier_mediu %>" media="(max-width:1000px)" />
+                <img src="<%- imag.fisier %>" alt="imagine">
+            </picture>
+            <figcaption><%- imag.descriere %></figcaption>
+        </figure>
+
+    <% } %>
+</div>
