@@ -1,7 +1,21 @@
 <div id="grid-galerie">
-    <% for (let imag of locals.imagini) { %>
-       <!--  const currentHour = new Date().getHours();
-         if (imag.timp === currentHour) { -->
+    <% let i = 0; %>
+    <% for (let imag of locals.imagini) {
+        function what_time(time) {
+            let date = new Date();
+            let t0 = time.split("-")[0].split(":");
+            let t1 = time.split("-")[1].split(":");
+
+            return (
+                    (date.getHours() > t0[0] || date.getHours() == t0[0] && date.getMinutes() >= t0[1])
+                    &&
+                    (date.getHours() < t1[0] || date.getHours() == t1[0] && date.getMinutes() <= t1[1])
+            );
+        }
+
+        if ((imag.timp && what_time(imag.timp) || !imag.timp) && i++ <=10) {
+
+    %>
 
 
         <figure>
@@ -9,8 +23,8 @@
                 <source srcset="<%- imag.fisier_mediu %>" media="(max-width:1000px)" />
                 <img src="<%- imag.fisier %>" alt="imagine">
             </picture>
-            <figcaption><%- imag.descriere %></figcaption>
+            <figcaption><%- imag.titlu %></figcaption>
         </figure>
 
-    <% } %>
+    <% } }%>
 </div>

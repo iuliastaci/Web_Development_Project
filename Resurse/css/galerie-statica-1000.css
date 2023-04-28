@@ -1,0 +1,10 @@
+@media screen and (max-width: 1000px) {
+    #grid-galerie {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #grid-galerie > * {
+        grid-row: unset;!important;
+        grid-column: unset;!important;
+    }
+}
