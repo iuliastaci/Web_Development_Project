@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../WebstormProjects/Lab9/.idea/Lab9.iml" filepath="$PROJECT_DIR$/../WebstormProjects/Lab9/.idea/Lab9.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Web_Development_Project.iml" filepath="$PROJECT_DIR$/.idea/Web_Development_Project.iml" />
     </modules>
   </component>
