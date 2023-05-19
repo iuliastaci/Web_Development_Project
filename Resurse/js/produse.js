@@ -1,4 +1,4 @@
-window.onload = function (){
+window.addEventListener("load", function (){
 
     document.getElementById("inp-pret").onchange = function (){
         document.getElementById("infoRange").innerHTML = `(${this.value})`;
@@ -102,4 +102,33 @@ window.onload = function (){
         sortare(-1);
     }
 
-}
+    window.onkeydown = function (e){
+        if (e.altKey && e.key === "c"){
+            if(document.getElementById("info-suma"))
+                return;
+
+        var produse = document.getElementsByClassName("produs");
+        let suma = 0;
+        for (let prod of produse){
+            if (prod.style.display != "none") {
+                let pret = parseFloat(prod.getElementsByClassName("val-pret")[0].innerHTML);
+                suma += pret;
+            }
+        }
+        let p = document.createElement("p");
+        p.innerHTML = suma;
+        p.id = "info-suma";
+        ps = document.getElementById("p-suma");
+        container = ps.parentNode;
+        frate = ps.nextElementSibling;
+        container.insertBefore(p, frate);
+        setTimeout(function (){
+            let info = document.getElementById("info-suma");
+            if (info){
+                info.remove();
+            }
+        }, 1000);
+    }
+
+    }
+})

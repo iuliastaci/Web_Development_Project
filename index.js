@@ -6,6 +6,16 @@ const sass = require("sass");
 const ejs = require("ejs");
 
 const {Client} = require('pg');
+const AccesBD = require("./module_proprii/accesbd");
+
+AccesBD.getInstanta().select({
+    tabel: "prajituri",
+    campuri: ["nume", "pret", "calorii"],
+    conditiiAnd: ["pret>7"]
+}, function (err, rez){
+    console.log(err);
+    console.log(rez);
+})
 
 
 var client= new Client({database:"db_web", //modificat numele bazei de date - done
