@@ -1,0 +1,70 @@
+main {
+    padding-left: var(--padding-sectiune);
+    padding-right: var(--padding-sectiune);
+}
+
+.grid-produse {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 3rem;
+}
+
+.grid-produse .produs {
+    overflow: hidden;
+    border-radius: 25px;
+    box-shadow: 0px 0px 0.8rem 0.3rem var(--culoare-border);
+}
+.grid-produse .produs h3 {
+    text-align: center;
+
+}
+
+.grid-produse .produs h3 a {
+    color: var(--culoare-text-buton);
+    text-decoration: none;
+}
+
+.grid-produse .produs h3 a:hover {
+    color: var(--culoare-text);
+}
+
+.produs {
+    position: relative;
+}
+
+.div-filtrare {
+    padding: 2rem;
+    border-radius: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: 0px 0px 0.5rem 0.15rem var(--culoare-border);
+}
+
+#checkbox-gr {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.div-locatie {
+    width: auto;
+}
+
+.selecteaza-cos {
+    display: inline-block;
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    text-align: center;
+    padding: 0.6rem;
+    padding-right: 1.5rem;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    border-bottom-right-radius: 30px;
+    background-color: var(--culoare-border-tabel);
+}
+
+.selecteaza-cos:hover {
+    border: 3px solid var(--culoare-border);
+    background-color: var(--culoare-header);
+
+}

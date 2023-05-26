@@ -21,6 +21,22 @@ body {
     --latime-buton-link: 150px;
 }
 
+body.dark {
+    /*to do */
+}
+
+#tema i.fa-sun {
+    display: none;
+}
+
+body.dark #tema i.fa-moon{
+    display: none;
+}
+
+body.dark #tema i.fa-sun{
+    display: inline;
+}
+
 body {
     background-color: var(--culoare-fundal);
     color: var(--culoare-text);

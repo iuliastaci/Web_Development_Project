@@ -5,7 +5,11 @@
   $border-radius: 10px,
   $font-family-base: 'Open sans',
    $display-font-sizes: (1: 2rem,
-        2: 1.75rem
+        2: 1.75rem,
+        3: 1.5rem,
+        4: 1.25rem,
+        5: 1rem,
+        6: 0.5rem
    ),
   $grid-breakpoints: (xs: 0,
         sm: 500px,
@@ -19,7 +23,18 @@
         lg: 970px,
         xl: 1140px,
         xxl: 1320px,
-    )
+    ),
+  //Cresc dimensiunea bulinei care gliseaza
+  $form-range-thumb-width: 1.5rem,
+  $form-range-thumb-height: 1.5rem,
+
+  //Schimb culoarea bulinei care gliseaza
+  $form-range-thumb-bg: #FFE4D6,
+
+  //Schimb culoarea liniei pe care se gliseaza
+  $form-range-track-bg: #31382F
+
 );
+@use "../../node_modules/bootstrap-icons/font/bootstrap-icons";
 
 //trebuie modificate grid-breakpoint si container-max-widths (dimensiunile de grid) - done
