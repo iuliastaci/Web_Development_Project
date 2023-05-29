@@ -140,17 +140,18 @@ class Utilizator{
         if (!username) return null;
         let eroare=null;
         AccesBD.getInstanta(Utilizator.tipConexiune).select({tabel:"utilizatori",campuri:['*'],conditiiAnd:[`username='${username}'`]}, function (err, rezSelect){
+            let u = null;
             if(err){
                 console.error("Utilizator:", err);
-                console.log("Utilizator",rezSelect.rows.length);
                 //throw new Error()
                 eroare=-2;
             }
             else if(rezSelect.rowCount==0){
                 eroare=-1;
+            } else {
+                //constructor({id, username, nume, prenume, email, rol, culoare_chat="black", poza}={})
+                u = new Utilizator(rezSelect.rows[0])
             }
-            //constructor({id, username, nume, prenume, email, rol, culoare_chat="black", poza}={})
-            let u= new Utilizator(rezSelect.rows[0])
             proceseazaUtiliz(u, obparam, eroare);
         });
     }
