@@ -68,3 +68,29 @@ main {
     background-color: var(--culoare-header);
 
 }
+
+/*
+.grid-produse .produs figure {
+    text-align: center;
+}
+*/
+
+/*.info-prod {
+    display: flex;
+}*/
+
+.table-container {
+    flex: 1;
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+}

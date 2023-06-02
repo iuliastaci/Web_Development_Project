@@ -1,5 +1,40 @@
 window.addEventListener("load", function (){
 
+    let iduriProduse=localStorage.getItem("cos_virtual");
+    iduriProduse=iduriProduse?iduriProduse.split(","):[];      //["3","1","10","4","2"]
+
+    for(let idp of iduriProduse){
+        let ch = document.querySelector(`[value='${idp}'].select-cos`);
+        if(ch){
+            ch.checked=true;
+        }
+        else{
+            console.log("id cos virtual inexistent:", idp);
+        }
+    }
+
+    //----------- adaugare date in cosul virtual (din localStorage)
+    let checkboxuri= document.getElementsByClassName("select-cos");
+    for(let ch of checkboxuri){
+        ch.onchange=function(){
+            let iduriProduse=localStorage.getItem("cos_virtual");
+            iduriProduse=iduriProduse?iduriProduse.split(","):[];
+
+            if( this.checked){
+                iduriProduse.push(this.value)
+            }
+            else{
+                let poz= iduriProduse.indexOf(this.value);
+                if(poz != -1){
+                    iduriProduse.splice(poz,1);
+                }
+            }
+
+            localStorage.setItem("cos_virtual", iduriProduse.join(","))
+        }
+
+    }
+
     document.getElementById("inp-pret").onchange = function (){
         document.getElementById("infoRange").innerHTML = `(${this.value})`;
 
@@ -18,12 +53,14 @@ window.addEventListener("load", function (){
             }
         }
 
-        /*if(val_calorii != "toate") {
-            var cal_a, cal_b;
-            [cal_a, cal_b] = val_calorii.split(":"); //va fi string, nu numar
-            cal_a = parseInt(cal_a);
-            cal_b = parseInt(cal_b);
-        }*/
+        let locatie = document.getElementsByName("gr_chck");
+
+        let val_loc = [];
+        for(let l of locatie) {
+            if(l.checked) {
+                val_loc.push(l.value);
+            }
+        }
 
         let val_pret = document.getElementById("inp-pret").value;
 
@@ -31,10 +68,40 @@ window.addEventListener("load", function (){
 
         let val_categ = document.getElementById("inp-categorie").value;
 
+        let val_descriere = document.getElementById("i_textarea").value.toLowerCase();
+
+        let val_timpInput = document.getElementById("i_datalist");
+        let val_timp = document.getElementById("i_datalist").value;
+
+        let datalistOpt = document.getElementById("id_lista").children;
+        let isValid = false;
+
+        for (let i=0; i<datalistOpt.length; i++) {
+            if (datalistOpt[i].value == val_timp || val_timp == "") {
+                isValid = true;
+                break;
+            }
+        }
+
+        if (!isValid) {
+            alert("Timpul de plantare nu este valid!");
+            val_timpInput.style.border = "4px solid red";
+            return;
+        } else {
+            val_timpInput.style.border = "";
+        }
+
+        let val_lumina2 = document.getElementById("i_select_multiplu");
+        let conditii_lumina_selectate = [];
+        for (let options of val_lumina2.selectedOptions) {
+            conditii_lumina_selectate.push(options.value);
+        }
+
         for (let prod of produse){
             prod.style.display = "none";
+
             let nume = prod.getElementsByClassName("val-nume")[0].innerHTML.toLowerCase();
-            let cond1 = (nume.startsWith(val_nume)); //in task inlocuiesc cu includes
+            let cond1 = (nume.includes(val_nume)); //in task inlocuiesc cu includes
 
             let cond2 = (val_lumina == "toate" || val_lumina == "soare" || val_lumina == "semiumbra" || val_lumina == "umbra");
 
@@ -44,7 +111,19 @@ window.addEventListener("load", function (){
             let categorie = prod.getElementsByClassName("val-categorie")[0].innerHTML;
             let cond4 = (val_categ == "toate" || val_categ == categorie);
 
-            if (cond1 && cond2 && cond3 && cond4){
+            let prod_loc = prod.getElementsByClassName("val-locatie")[0].innerHTML;
+            let cond5 = (val_loc.includes(prod_loc));
+
+            let prod_timp = prod.getElementsByClassName("val-timp")[0].innerHTML;
+            let cond6 = (val_timp === "" || prod_timp.includes(val_timp));
+
+            let prod_descriere = prod.getElementsByClassName("val-descriere")[0].innerHTML.toLowerCase();
+            let cond7 = (val_descriere === "" || prod_descriere.includes(val_descriere));
+
+            let cond8 = conditii_lumina_selectate.length === 0 || !conditii_lumina_selectate.some(timp => prod_timp.includes(timp));
+
+
+            if (cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8){
                 prod.style.display = "block";
             }
 
@@ -61,6 +140,9 @@ window.addEventListener("load", function (){
             document.getElementById("i_rad4").checked = true;
             var produse = document.getElementsByClassName("produs");
             document.getElementById("infoRange").innerHTML = "(0)";
+            document.getElementById("i_datalist").value = "";
+            document.getElementById("i_textarea").value = "";
+            document.getElementById("i_select_multiplu").value = "";
 
             for (let prod of produse) {
                 prod.style.display = "block";
@@ -127,4 +209,30 @@ window.addEventListener("load", function (){
     }
 
     }
-})
+    const textarea = document.getElementById("i_textarea");
+
+    function validation(textarea) {
+        let val_descriere = textarea.value.toLowerCase();
+        var produse = document.getElementsByClassName("produs");
+        let isInvalid = true;
+
+        for (let prod of produse) {
+            let prod_descriere = prod.getElementsByClassName("val-descriere")[0].innerHTML.toLowerCase();
+            if (prod_descriere.includes(val_descriere)) {
+                isInvalid = false;
+                break;
+            }
+        }
+
+        if (isInvalid) {
+            textarea.classList.add("is-invalid");
+        } else {
+            textarea.classList.remove("is-invalid");
+        }
+    }
+
+    textarea.addEventListener("input", function (){
+        validation(textarea);
+    });
+});
+

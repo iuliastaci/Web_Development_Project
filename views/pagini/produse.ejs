@@ -27,17 +27,19 @@
                     <!--input de tip radio-->
                     <div> <label>Conditii de lumina:</label> <br><!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
                         <div class="col-md-5">
-                            <label class="radio-label">Soare
-                                <input id="i_rad1"  name="gr_rad" value="soare" type="radio"/>
-                            </label>
-                            <label class="radio-label">Semiumbra
-                                <input id="i_rad2"  name="gr_rad" value="semiumbra" type="radio"/>
-                            </label>
-                            <label class="radio-label">Umbra
-                                <input id="i_rad3" name="gr_rad" value="umbra" type="radio"/>
-                            </label>
+                            <div class="btn-group btn-toggle">
+                                <label class="btn btn-outline-primary">Soare
+                                    <input id="i_rad1"  name="gr_rad" value="soare" type="radio"/>
+                                </label>
+                                <label class="btn btn-outline-primary">Semiumbra
+                                    <input id="i_rad2"  name="gr_rad" value="semiumbra" type="radio" autocomplete="off"/>
+                                </label>
+                                <label class="btn btn-outline-primary">Umbra
+                                    <input id="i_rad3" name="gr_rad" value="umbra" type="radio"/>
+                                </label>
+                            </div>
                         </div>
-                        <label class="radio-label">Toate
+                        <label class="btn btn-outline-primary active">Toate
                             <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
                         </label>
                     </div>
@@ -66,6 +68,7 @@
                     <span id="infoRange">(0)</span>
                 </div>
                 <div class="col-md-6">
+                    <!--input de tip select simplu-->
                     <label>Categorie:</label>
                     <select id="inp-categorie" class="form-select">
                         <option id="sel-toate" selected value="toate">toate</option>
@@ -78,6 +81,7 @@
             <br>
             <div class="row">
                 <div class="col-md-6">
+                    <!--input de tip datalist-->
                     <label>Timp de plantare:</label>
                     <input list="id_lista" id="i_datalist" class="form-control">
                     <datalist id="id_lista">
@@ -128,29 +132,56 @@
                     <article class="produs <$-prod.categorie%>" id="ar_ent_<%-prod.id%>">
                         <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
                         <div class="info-prod">
-                            <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
-                            <p class="calorii">Calorii: <span class="val-calorii"><%- prod.calorii%></span></p>
-                            <p class="gramaj">Gramaj: <span class="val-gramaj"><%- prod.gramaj%></span></p>
-                        </div>
-                        <p class="descriere">Descriere: <span class="val-descriere"><%- prod.descriere%> </span></p>
-                        <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie%></span></p>
+                            <div class="table-container">
+                                <table>
+                                    <tr>
+                                        <th class="pret">Pret</th>
+                                        <th class="">Conditii de lumina</th>
+                                        <th class="timp">Timp de plantare</th>
+                                        <th class="data">Data adaugare</th>
+                                        <th class="comestibil">Comestibil</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="val-pret"><%- prod.pret%></td>
+                                        <td class="val-lumina"><%- prod.conditii_de_lumina%></td>
+                                        <td class="val-timp"><%- prod.timp_de_plantare%></td>
+                                        <td class="val-data"><% let d = new Date(prod.data_adaugare);
+                                                let ziua = new Intl.DateTimeFormat("ro-RO", { weekday: "long" }).format(d);
+                                                let zi = d.getDate();
+                                                let luna = new Intl.DateTimeFormat("ro-RO", { month: "long" }).format(d);
+                                                let an = d.getFullYear();
+                                                let data = `${zi}(${ziua})/${luna}/${an}`;
+                                            %><time datetime="<%-prod.data_adaugare%>"><%-data%></time></td>
+                                        <td class="val-comestibil"><%- prod.comestibil%></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!--<p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>-->
+                            <!--<p class="calorii">Calorii: <span class="val-calorii"><%- prod.calorii%></span></p>
+                            <p class="gramaj">Gramaj: <span class="val-gramaj"><%- prod.gramaj%></span></p>-->
+
+                            <p class="descriere">Descriere: <span class="val-descriere"><%- prod.descriere%> </span></p>
+                            <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie%></span></p>
 
                         <!--data-->
-                        <% let d = new Date(prod.data_adaugare);
+                        <!--<% /*let d = new Date(prod.data_adaugare);
                             let ziua = new Intl.DateTimeFormat("ro-RO", { weekday: "long" }).format(d);
                             let zi = d.getDate();
                             let luna = new Intl.DateTimeFormat("ro-RO", { month: "long" }).format(d);
                             let an = d.getFullYear();
-                            let data = `${zi}(${ziua})/${luna}/${an}`;
-                        %>
-                        <p>Data: <time datetime="<%-prod.data_adaugare%>"><%-data%></time></p>
-                        <figure>
-                            <a href="/produs/<%-prod.id %>" ><img src="/Resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
-                        </figure>
-                        <label class="selecteaza-cos">
-                            Selectează:<br/>
-                            <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
-                        </label>
+                            let data = `${zi}(${ziua})/${luna}/${an}`;*/
+                        %>-->
+                        <!--<p>Data: <time datetime="<%-prod.data_adaugare%>"><%-data%></time></p>-->
+                            <div class="image-container">
+                                <figure>
+                                    <a href="/produs/<%-prod.id %>" ><img src="/Resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
+                                </figure>
+                            </div>
+                            <label class="selecteaza-cos">
+                                Selectează:<br/>
+                                <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
+                            </label>
+                        </div>
                     </article>
                 <% }%>
             </div>

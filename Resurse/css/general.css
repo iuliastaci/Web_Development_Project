@@ -22,7 +22,18 @@ body {
 }
 
 body.dark {
-    /*to do */
+    --culoare-text: white;
+    --culoare-grid-fundal: #9CB396;
+    --culoare-meniu: #798A74;
+    --culoare-highlight: #A38879;
+    --culoare-fundal: #759478;
+    --culoare-text-buton: #C2DEBA;
+    --culoare-border-tabel: #5C4F49;
+    --culoare-c1: #CCAFA1;
+    --culoare-c2: #CFA58F;
+    --culoare-header: #8A7B74;
+    --culoare-border-header: #DEC6BA;
+
 }
 
 #tema i.fa-sun {

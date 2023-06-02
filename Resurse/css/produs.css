@@ -1,0 +1,31 @@
+#art-produs {
+    box-shadow: 0px 0px 10px 5px var(--culoare-border);
+    padding: 0.4rem;
+}
+
+#art-produs p {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+#art-produs p span {
+    font-weight: normal;
+}
+
+.imag-produs {
+    text-align: center;
+}
+
+.imag-produs img {
+    width: 50%;
+
+}
+
+h2 {
+    padding: 0.4rem;
+}
+
+h3 {
+    text-align: center;
+    font-weight: bold;
+}
