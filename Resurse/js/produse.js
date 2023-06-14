@@ -53,7 +53,8 @@ window.addEventListener("load", function (){
             }
         }
 
-        let locatie = document.getElementsByName("gr_chck");
+
+        let locatie = document.getElementsByName("gr_check");
 
         let val_loc = [];
         for(let l of locatie) {
@@ -61,6 +62,7 @@ window.addEventListener("load", function (){
                 val_loc.push(l.value);
             }
         }
+
 
         let val_pret = document.getElementById("inp-pret").value;
 
@@ -76,6 +78,8 @@ window.addEventListener("load", function (){
         let datalistOpt = document.getElementById("id_lista").children;
         let isValid = false;
 
+        console.log(val_categ)
+        console.log(val_timp)
         for (let i=0; i<datalistOpt.length; i++) {
             if (datalistOpt[i].value == val_timp || val_timp == "") {
                 isValid = true;
@@ -96,6 +100,7 @@ window.addEventListener("load", function (){
         for (let options of val_lumina2.selectedOptions) {
             conditii_lumina_selectate.push(options.value);
         }
+        console.log(conditii_lumina_selectate)
 
         for (let prod of produse){
             prod.style.display = "none";
@@ -103,7 +108,8 @@ window.addEventListener("load", function (){
             let nume = prod.getElementsByClassName("val-nume")[0].innerHTML.toLowerCase();
             let cond1 = (nume.includes(val_nume)); //in task inlocuiesc cu includes
 
-            let cond2 = (val_lumina == "toate" || val_lumina == "soare" || val_lumina == "semiumbra" || val_lumina == "umbra");
+            let lumina = prod.getElementsByClassName("val-lumina")[0].innerHTML;
+            let cond2 = (val_lumina === "toate" || val_lumina === lumina);
 
             let pret = parseFloat(prod.getElementsByClassName("val-pret")[0].innerHTML);
             let cond3 = (pret >= val_pret);
@@ -120,12 +126,16 @@ window.addEventListener("load", function (){
             let prod_descriere = prod.getElementsByClassName("val-descriere")[0].innerHTML.toLowerCase();
             let cond7 = (val_descriere === "" || prod_descriere.includes(val_descriere));
 
-            let cond8 = conditii_lumina_selectate.length === 0 || !conditii_lumina_selectate.some(timp => prod_timp.includes(timp));
+            let cond8 = conditii_lumina_selectate.length === 0 || !conditii_lumina_selectate.some(lum => lumina === lum);
 
 
             if (cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8){
                 prod.style.display = "block";
             }
+
+            // if(cond2){
+            //     prod.style.display = "block";
+            // }
 
         }
 
@@ -143,6 +153,10 @@ window.addEventListener("load", function (){
             document.getElementById("i_datalist").value = "";
             document.getElementById("i_textarea").value = "";
             document.getElementById("i_select_multiplu").value = "";
+            var ch = document.getElementsByName("gr_check");
+            for (let i of ch){
+                i.checked = true;
+            }
 
             for (let prod of produse) {
                 prod.style.display = "block";

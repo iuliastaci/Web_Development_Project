@@ -266,12 +266,12 @@ main a.link:active{
     transition: all 0.5s linear;
 }
 
-main a.link[href^="http"]::before{
+a.link[href^="https"]::before{
     content: "⮳";
     font-size: 1.5rem;
 }
 
-main a.link[href^="http"]:hover::before{
+a.link[href^="https"]:hover::before{
     color: black;
     transition: color 0.35s linear;
 }
@@ -334,4 +334,48 @@ main a.link[href^="http"]:hover::before{
 
 .fixed-bg {
     animation: change-background 20s ease-in-out infinite;
+}
+
+#banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: var(--culoare-highlight);
+    transition: opacity 5s, background-color 5s;
+    padding: var(--padding-sectiune);
+    height: 25vh;
+    width: 25vw;
+    /*opacity: 0;*/
+}
+
+.mesaj-cookies p:first-of-type {
+    margin-left: -8px;
+}
+
+.mesaj-cookies p {
+    font-size: 1.5vw;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.mesaj-cookies button {
+    background-color: var(--culoare-border-header);
+    border: black solid 1px;
+    cursor: pointer;
+    position: relative;
+    left: 40%;
+}
+@keyframes animatie_banner {
+    0% {
+        opacity: 0;
+        background-color: var(--culoare-highlight);
+    }
+    100% {
+        opacity: 0.75;
+        background-color: var(--culoare-header);
+    }
+}
+
+.isBanner {
+    animation: animatie_banner 5s forwards;
 }

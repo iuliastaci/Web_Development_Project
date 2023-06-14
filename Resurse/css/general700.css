@@ -19,3 +19,6 @@ html{
 .container-iframe{
     display: none;
 }
+.isBanner {
+    animation: animatie_banner 0s forwards;
+}
