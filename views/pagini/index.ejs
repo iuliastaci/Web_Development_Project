@@ -123,9 +123,70 @@
                     </div>
                 </section>
                 <section id="lista_utilizatori">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, deserunt dolorem hic inventore
-                        ipsam minus mollitia nihil odio sed vel. Amet dolor eos itaque labore nemo perferendis possimus,
-                        voluptatem voluptatibus!</p>
+                    <script>
+                       /* function schimbaImag*/ /*de pus in alt fisier*/
+                        /*trb generat vector javascript de src pt imag */
+                       var vProduse = JSON.parse('<%- produse%>');
+                       console.log(vProduse);
+                    </script>
+                    <div id="product-carousel" class="carousel slide" data-ride="carousel" data-interval="15000">
+                        <ol class="carousel-indicators">
+                            <li data-bs-target="#product-carousel" data-bs-slide-to="0" class="active"></li>
+                            <li data-bs-target="#product-carousel" data-bs-slide-to="1"></li>
+                            <li data-bs-target="#product-carousel" data-bs-slide-to="2"></li>
+                            <li data-bs-target="#product-carousel" data-bs-slide-to="3"></li>
+                            <li data-bs-target="#product-carousel" data-bs-slide-to="4"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <!-- Product slides will be loaded here -->
+                            <div class="carousel-item active" id="slide0">
+                                <img src="" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>First slide label</h5>
+                                    <p>Some representative placeholder content for the first slide.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item" id="slide1">
+                                <img src="" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>First slide label</h5>
+                                    <p>Some representative placeholder content for the first slide.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item" id="slide2">
+                                <img src="" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>First slide label</h5>
+                                    <p>Some representative placeholder content for the first slide.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item" id="slide3">
+                                <img src="" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>First slide label</h5>
+                                    <p>Some representative placeholder content for the first slide.</p>
+                                </div>
+                            </div>
+                            <div class="carousel-item" id="slide4">
+                                <img src="" class="d-block w-100" alt="...">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>First slide label</h5>
+                                    <p>Some representative placeholder content for the first slide.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#product-carousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#product-carousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+                    <script src="/Resurse/js/carousel.js"></script>
+
                 </section>
                 <section id="date_utilizatori">
                     <p>

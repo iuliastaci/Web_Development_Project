@@ -17,8 +17,15 @@ function getCookie(nume){
 }
 
 function deleteCookie(nume){
-    console.log(`${nume}; expires=${(new Date()).toUTCString()}`)
+    //console.log(`${nume}; expires=${(new Date()).toUTCString()}`)
     document.cookie=`${nume}=0; expires=${(new Date()).toUTCString()}`;
+}
+
+function deleteAllCookies() {
+    vectorParametri = document.cookie.split(";")
+    for (let param of vectorParametri) {
+        deleteCookie(param.split("=")[0])
+    }
 }
 
 
@@ -26,6 +33,8 @@ window.addEventListener("load", function(){
     if (getCookie("acceptat_banner")){
         document.getElementById("banner").style.display="none";
     }
+    else
+        document.getElementById("banner").classList.add("animation");
 
     this.document.getElementById("ok_cookies").onclick=function(){
         setCookie("acceptat_banner",true,60000);

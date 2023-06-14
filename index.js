@@ -183,11 +183,23 @@ app.get("/ceva", function (req,res){
     res.send("<h1>altceva</h1> ip:"+req.ip );
 })
 app.get(["/index", "/", "/home", "/login"], function (req, res){
-    let sir=req.session.succesLogin;
-    req.session.succesLogin=null;
+
+
+    //pentru carusel bootstrap, sa aduc produsele in vector js
+    client.query("SELECT * FROM produse", function (err, rezProd){
+        if(err) {
+            console.log(err);
+            afisareEroare(res,2);
+        } else {
+            let sir=req.session.succesLogin;
+            req.session.succesLogin=null;
+            res.render("pagini/index", {ip: req.ip, a:10, b:5, imagini:obGlobal.obImagini.imagini, mesajLogin:sir, produse:JSON.stringify(rezProd.rows)}); //al doilea parametru al lui render este locals
+        }
+    });
+
 
     // TO DO
-    res.render("pagini/index", {ip: req.ip, a:10, b:5, imagini:obGlobal.obImagini.imagini, mesajLogin:sir}); //al doilea parametru al lui render este locals
+
 
 })
 
@@ -534,7 +546,7 @@ cale_qr=__dirname+"/resurse/imagini/qrcode";
 if (fs.existsSync(cale_qr))
     fs.rmSync(cale_qr, {force:true, recursive:true});
 fs.mkdirSync(cale_qr);
-client.query("select id from prajituri", function(err, rez){
+client.query("select id from produse", function(err, rez){
     for(let prod of rez.rows){
         let cale_prod=obGlobal.protocol+obGlobal.numeDomeniu+"/produs/"+prod.id;
         //console.log(cale_prod);
@@ -562,7 +574,7 @@ app.post("/cumpara",function(req, res){
     console.log("Drept:", req?.utilizator?.areDreptul?.(Drepturi.cumparareProduse));
     if (req?.utilizator?.areDreptul?.(Drepturi.cumparareProduse)){
         AccesBD.getInstanta().select({
-            tabel:"prajituri",
+            tabel:"produse",
             campuri:["*"],
             conditiiAnd:[`id in (${req.body.ids_prod})`]
         }, function(err, rez){
