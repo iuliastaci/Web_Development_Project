@@ -1,0 +1,65 @@
+{
+	"cale_galerie":"resurse/imagini/galerie",
+	"imagini": [
+		{
+			"fisier":"trandafir.jpg",
+			"titlu": "Trandafir",
+			"descriere":"Trandafir roz",
+			"timp":	"09:00-12:00"	},
+		{
+			"fisier":"primula.jpg",
+			"titlu": "Primula",
+			"descriere":"Primula alb cu roz",
+			"timp":"05:00-07:00"
+			
+		},
+		{
+			"fisier":"orhidee.jpg",
+			"titlu": "Orhidee",
+			"descriere":"Orhidee mov",
+			"timp": "10:00-15:00"
+		},
+		{
+			"fisier":"papadie.jpg",
+			"titlu": "Papadie",
+			"descriere":"Papadie cu puf",
+			"timp":"13:00-17:00"
+		},
+		{
+			"fisier":"margareta.jpg",
+			"titlu": "Margareta",
+			"descriere":"Margareta",
+			"timp": "19:00-22:00"
+		},
+		{
+			"fisier":"lalea.jpg",
+			"titlu": "Lalea",
+			"descriere":"Lalea alba",
+			"timp": "11:00-2000"
+		},
+		{
+			"fisier":"hortensie.jpg",
+			"titlu": "Hortensie",
+			"descriere":"Hortensie roz",
+			"timp": "15:00-23:00"
+		},
+		{
+		"fisier":"bujor.jpg",
+		"titlu": "Bujor",
+		"descriere":"Bujor roz",
+		"timp": "03:00-08:00"
+		},
+		{
+		"fisier":"gerbera.jpg",
+		"titlu": "Gerbera",
+		"descriere":"Gerbera roz",
+		"timp": "18:00-23:00"
+		},
+		{
+		"fisier":"narcisa.jpg",
+		"titlu": "Narcisa",
+		"descriere":"Narcisa",
+		"timp": "10:00-22:00"
+		}
+	]
+}
