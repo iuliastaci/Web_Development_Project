@@ -116,6 +116,13 @@ class AccesBD{
         */
         this.client.query(comanda,parametriQuery, callback)
     }
+
+    /**
+     * @param {string[]} campuri - campurile care se vor selecta
+     * @param {string} tabel - tabelul din care se selecteaza
+     * @param {string[]} conditiiAnd - optional, vector de conditii care se concateneaza cu AND
+     * @returns {Promise<any>} - o promisiune care returneaza rezultatul qury-ul sau NULL daca exista eroare
+     *  * */
     async selectAsync({tabel="",campuri=[],conditiiAnd=[]} = {}){
         let conditieWhere="";
         if(conditiiAnd.length>0)
@@ -133,6 +140,13 @@ class AccesBD{
             return null;
         }
     }
+    /**
+     * @param {Object} options - obiect primit de functie pt realizarea query-ului
+     * @param {string} options.tabel - numele tabelului in care se insereaza datele
+     * @param {Object} options.campuri - obiect care contine perechi camp-valoare ce vor fi inserate
+     * @param {function} callback - functie callback care se va apela dupa ce query-ul a fost executat
+     * @returns {void}
+     * */
     insert({tabel="",campuri={}} = {}, callback){
         console.log("-------------------------------------------")
         console.log(Object.keys(campuri).join(","));
@@ -211,6 +225,11 @@ class AccesBD{
         this.client.query(comanda,callback)
     }
 
+    /**
+     * @param {string} comanda - comanda SQL care va fi executata
+     * @param {function} callback - functie callback care va fi executata dupa ce se realizeaza query-ul
+     * @returns {void}
+    * */
     query(comanda, callback){
         this.client.query(comanda,callback);
     }
