@@ -105,11 +105,13 @@
                 <div class="col-md-12">
                     <div class="form-floating">
                         <textarea class="form-control" id="i_textarea" placeholder=" " required></textarea>
-                        <label for="i_textarea">Descriere</label>
-                        <div class="invalid-feedback">Nu exista produse care se potrivesc acestei descrieri. Va rugam introduceti o descriere valida.</div>
+                        <label for="i_textarea" class="form-label">Descriere</label>
+                        <div id="invalidDescription" style="display: none">Nu exista produse care se potrivesc acestei descrieri. Va rugam introduceti o descriere valida.</div>
                     </div>
                 </div>
             </div>
+
+            <div id="invalid" style="display: none" >Nu exista produse care se potrivesc acestei filtrari. Va rugam introduceti filtre valide.</div>
 
             <br>
             <br>

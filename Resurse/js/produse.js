@@ -25,7 +25,7 @@ window.addEventListener("load", function (){
             }
             else{
                 let poz= iduriProduse.indexOf(this.value);
-                if(poz != -1){
+                if(poz !== -1){
                     iduriProduse.splice(poz,1);
                 }
             }
@@ -71,6 +71,14 @@ window.addEventListener("load", function (){
         let val_categ = document.getElementById("inp-categorie").value;
 
         let val_descriere = document.getElementById("i_textarea").value.toLowerCase();
+        let vector_descriere = val_descriere.split(",");
+        let RegExp = /^[A-z]*((,|\s)*[A-z]*)*$/;
+        const isMatch = RegExp.test(val_descriere);
+        console.log(isMatch);
+
+        if (val_descriere === "" || !RegExp.test(val_descriere)){
+            document.getElementById("invalidDescription").style.display = "block";
+        }
 
         let val_timpInput = document.getElementById("i_datalist");
         let val_timp = document.getElementById("i_datalist").value;
@@ -78,10 +86,9 @@ window.addEventListener("load", function (){
         let datalistOpt = document.getElementById("id_lista").children;
         let isValid = false;
 
-        console.log(val_categ)
-        console.log(val_timp)
+
         for (let i=0; i<datalistOpt.length; i++) {
-            if (datalistOpt[i].value == val_timp || val_timp == "") {
+            if (datalistOpt[i].value === val_timp || val_timp === "") {
                 isValid = true;
                 break;
             }
@@ -100,7 +107,7 @@ window.addEventListener("load", function (){
         for (let options of val_lumina2.selectedOptions) {
             conditii_lumina_selectate.push(options.value);
         }
-        console.log(conditii_lumina_selectate)
+
 
         for (let prod of produse){
             prod.style.display = "none";
@@ -115,7 +122,7 @@ window.addEventListener("load", function (){
             let cond3 = (pret >= val_pret);
 
             let categorie = prod.getElementsByClassName("val-categorie")[0].innerHTML;
-            let cond4 = (val_categ == "toate" || val_categ == categorie);
+            let cond4 = (val_categ === "toate" || val_categ === categorie);
 
             let prod_loc = prod.getElementsByClassName("val-locatie")[0].innerHTML;
             let cond5 = (val_loc.includes(prod_loc));
@@ -123,8 +130,15 @@ window.addEventListener("load", function (){
             let prod_timp = prod.getElementsByClassName("val-timp")[0].innerHTML;
             let cond6 = (val_timp === "" || prod_timp.includes(val_timp));
 
+            let cond7 = false;
             let prod_descriere = prod.getElementsByClassName("val-descriere")[0].innerHTML.toLowerCase();
-            let cond7 = (val_descriere === "" || prod_descriere.includes(val_descriere));
+            for (let i of vector_descriere){
+                console.log(i)
+                if (prod_descriere.includes(i)){
+                    cond7 = true;
+                    break;
+                }
+            }
 
             let cond8 = conditii_lumina_selectate.length === 0 || !conditii_lumina_selectate.some(lum => lumina === lum);
 
@@ -133,14 +147,26 @@ window.addEventListener("load", function (){
                 prod.style.display = "block";
             }
 
-            // if(cond2){
-            //     prod.style.display = "block";
-            // }
-
+        }
+        let c = 0;
+        for (let p of produse){
+            if (p.style.display === "none"){
+                c++;
+            }
+        }
+        console.log(c);
+        if (c === 0){
+            document.getElementById("invalid").style.display = "block";
+        }
+        else {
+            document.getElementById("invalid").style.display = "none";
         }
 
     }
+    //in caz ca nu exista niciun prod care sa corespunda filtrelor
+    window.onchange=function (){
 
+    }
     //pt butonul Reseteaza
     document.getElementById("resetare").onclick = function(){
         if (confirm("Sunteti sigur ca doriti sa resetati filtrele?")) {
@@ -153,6 +179,7 @@ window.addEventListener("load", function (){
             document.getElementById("i_datalist").value = "";
             document.getElementById("i_textarea").value = "";
             document.getElementById("i_select_multiplu").value = "";
+            document.getElementById("invalid").style.display = "none";
             var ch = document.getElementsByName("gr_check");
             for (let i of ch){
                 i.checked = true;
@@ -172,7 +199,7 @@ window.addEventListener("load", function (){
         v_produse.sort(function (a, b) {
             let pret_a = parseFloat(a.getElementsByClassName("val-pret")[0].innerHTML);
             let pret_b = parseFloat(b.getElementsByClassName("val-pret")[0].innerHTML);
-            if (pret_a == pret_b) {
+            if (pret_a === pret_b) {
                 let nume_a = a.getElementsByClassName("val-nume")[0].innerHTML;
                 let nume_b = b.getElementsByClassName("val-nume")[0].innerHTML;
                 return semn * nume_a.localeCompare(nume_b);
@@ -202,7 +229,7 @@ window.addEventListener("load", function (){
         var produse = document.getElementsByClassName("produs");
         let suma = 0;
         for (let prod of produse){
-            if (prod.style.display != "none") {
+            if (prod.style.display !== "none") {
                 let pret = parseFloat(prod.getElementsByClassName("val-pret")[0].innerHTML);
                 suma += pret;
             }

@@ -40,4 +40,15 @@ window.addEventListener("load", function(){
         setCookie("acceptat_banner",true,60000);
         document.getElementById("banner").style.display="none"
     }
+
+    if (getCookie("planta")){
+        document.getElementById("cookie_planta").style.display = "none";
+    }
+    else
+        document.getElementById("cookie_planta").style.display = "block";
+
+    this.document.getElementById("cookie_planta").onclick = function (){
+        setCookie("planta",true,10000);
+        document.getElementById("cookie_planta").style.display = "none";
+    }
 })

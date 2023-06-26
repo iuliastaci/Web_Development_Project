@@ -345,7 +345,6 @@ a.link[href^="https"]:hover::before{
     padding: var(--padding-sectiune);
     height: 25vh;
     width: 25vw;
-    /*opacity: 0;*/
 }
 
 .mesaj-cookies p:first-of-type {
